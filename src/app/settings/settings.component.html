@@ -1,0 +1,17 @@
+<form novalidate [formGroup]="settingsForm" #cform="ngForm"  class="deform" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="firstname" placeholder="firstname" type="firstname">
+    <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="lastname" placeholder="lastname" type="lastname">
+    <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="phrase" placeholder="phrase" type="phrase">
+    <mat-error *ngIf="formErrors.phrase">{{formErrors.phrase}}</mat-error>
+  </mat-form-field>
+  <mat-slide-toggle  formControlName="status" placeholder="status" type="status"></mat-slide-toggle>
+  
+  <button mat-raised-button color="success" [disabled]="settingsForm.invalid">Send</button>
+</form>

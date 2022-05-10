@@ -1,0 +1,27 @@
+<div class="d-none d-lg-block  col-3 sidenav">
+  <mat-tab-group animationDuration="0ms" mat-align-tabs="start" class="aaa">
+    <mat-tab label="Following">
+      <div *ngFor="let f of following" class="grida cursor" routerLink="/users/{{usuario}}/{{f.id.usuario}}">
+        <div>
+          <img src="{{baseURL + f.id.image.filename}}" alt="chatimgstatus" />
+      </div>
+
+      <div >
+          <h6 id="f.id._id" >{{f.id.firstname}} {{f.id.lastname}}</h6>
+      </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Followers">
+      <div *ngFor="let f of followers" class="grida cursor" routerLink="/users/{{usuario}}/{{f.id.usuario}}">
+        <div>
+          <img src="{{baseURL + f.id.image.filename}}" alt="chatimgstatus" />
+        </div>
+
+      <div >
+          <h6 id="f.id._id" >{{f.id.firstname}} {{f.id.lastname}}</h6>
+      </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

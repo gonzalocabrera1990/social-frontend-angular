@@ -1,0 +1,85 @@
+<div *ngIf="user[0]; else userpageloading" style="margin-top: 5vh;">
+
+    <div *ngFor="let profile of user">
+        <div *ngIf="storiesAvailable; else nostory" class="profile-image">
+            <div class="image-profile-content cursor" routerLink="/stories-user-wall/{{profile._id}}" >
+                <img src="{{baseURL + profile.image.filename}}" alt="Profile One" class="img-thumbnail profile"
+                    />
+                <div class="profile-story"></div>
+            </div>
+        </div>
+        <ng-template #nostory>
+            <div class="profile-image">
+                <div class="image-profile-content">
+                    <img src="{{baseURL + profile.image.filename}}" alt="Profile One" class="img-thumbnail profile" />
+                </div>
+            </div>
+        </ng-template>
+        <div *ngIf="following == false && friendshipRequested == false" class="">
+            <button type="button" class="btn-success col-2 offset-5 mt-3"
+                (click)="sendFriendshipRequested(profile._id)">
+                <mat-icon class="icon-display">person_add</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="following" class="">
+            <button type="button" class="btn-success col-2 offset-5 mt-3 " disabled>
+                <mat-icon class="icon-display">done_all</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="friendshipRequested" class="">
+            <button type="button" class="btn-success col-2 offset-5 mt-3 " disabled>
+                <mat-icon class="icon-display fa-spin">hourglass_top</mat-icon>
+            </button>
+        </div>
+
+        <div class="user-info">
+            <div classclassName="user-info-description">
+                <h5 class="">{{profile.firstname}} {{profile.lastname}}</h5>
+                <h5 class="">"{{profile.phrase}}"</h5>
+                <h5 class="">{{profile.followers.length}} Followers - {{profile.following.length}} Following</h5>
+            </div>
+        </div>
+
+        <div *ngIf="following || !profile.publicStatus; else privateMessage" >
+            <mat-tab-group animationDuration="0ms" mat-align-tabs="start" class="labels-align">
+                <mat-tab label="Images">
+                    <div *ngIf="screenWidth > 600" class="grids">
+                        <div *ngFor="let img of profile.imagesWall" class="image-content cursor">
+                            <img src="{{baseURL + img.filename}}" class="img-thumbnail img-grid" alt="chatimgstatus"
+                                (click)="openDialog(img, 'imagen')" />
+                        </div>
+                    </div>
+                    <div *ngIf="screenWidth < 601" class="grids">
+                        <div *ngFor="let img of profile.imagesWall" class="image-content cursor">
+                            <img src="{{baseURL + img.filename}}" class="img-thumbnail img-grid" alt="chatimgstatus"
+                                routerLink="/view/imagenwall/{{img._id}}" />
+                        </div>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="Videos">
+                    <div *ngIf="screenWidth > 600" class="grids">
+                        <div *ngFor="let vid of profile.videosWall" class="image-content cursor">
+                            <video src="{{baseURL + vid.filename}}" class="img-thumbnail img-grid" alt="chatimgstatus"
+                                (click)="openDialog(vid,'video')"></video>
+                        </div>
+                    </div>
+                    <div *ngIf="screenWidth < 601" class="grids">
+                        <div *ngFor="let vid of profile.videosWall" class="image-content cursor">
+                            <video src="{{baseURL + vid.filename}}" class="img-thumbnail img-grid" alt="chatimgstatus"
+                                routerLink="/view/imagenwall/{{vid._id}}"></video>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <ng-template #privateMessage >
+            <h3 >This account is lock. Follow it to see its content.</h3>
+        </ng-template>
+    </div>
+</div>
+<ng-template #userpageloading>
+    <div>
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

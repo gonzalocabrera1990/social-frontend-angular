@@ -1,0 +1,24 @@
+<div  class="cursor" (click)="talkId(talk._id)">
+  <div *ngIf="talk.members.userOne._id == currentUser">
+    <div [ngClass]="readStatus ? 'chats' : ''" class="chat">
+    <div class="">
+        <img src="{{baseURL + talk.members.userTwo.image.filename}}" alt="chatimgstatus" />
+    </div>
+
+    <div class="">
+        <h6>{{talk.members.userTwo.firstname}}</h6>
+    </div>
+   </div>
+  </div>
+  <div *ngIf="talk.members.userTwo._id == currentUser">
+    <div [ngClass]="readStatus ? 'chats' : ''" class="chat">
+    <div class="">
+        <img src="{{baseURL + talk.members.userOne.image.filename}}" alt="chatimgstatus" />
+    </div>
+
+    <div class="">
+        <h6>{{talk.members.userOne.firstname}}</h6>
+    </div>
+   </div>
+  </div>
+</div>

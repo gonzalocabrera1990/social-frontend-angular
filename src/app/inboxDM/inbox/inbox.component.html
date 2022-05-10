@@ -1,0 +1,11 @@
+<div class="grid-inbox">
+  <div class="grid-inbox-one">
+    <app-talks-view [talks]="talks" (loadTalkEvent)="loadTalkMain($event)"></app-talks-view>
+  </div>
+  <div class="grid-inbox-two">
+    <app-chat-view [maintalk]="maintalk" [newTalkStatus]="newTalkStatus" [newTalkUser]="newTalkUser"  (sendMessageEvent)="sendMessageEvent($event)"></app-chat-view>
+  </div>
+  <div class="grid-inbox-three">
+    <app-friends-view [follows]="follows" (selectTalkEvent)="selectTalkMain($event)" ></app-friends-view>
+  </div>
+</div>

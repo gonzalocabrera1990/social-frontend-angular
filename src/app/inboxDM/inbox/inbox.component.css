@@ -1,0 +1,34 @@
+.grid-inbox{
+    width: 100%;
+    height: 80vh;
+    max-height: 80vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+}
+@media(max-width: 800px){
+    .grid-inbox{
+        height: 80vh;
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        grid-template-rows: 2fr 1fr 2fr;
+        grid-gap: 10px;
+        grid-template-areas: 
+            "one two"
+            "three two"
+            "three two";
+    }
+    .grid-inbox-one {
+        grid-area: one;
+        height: 80%;
+    }
+    .grid-inbox-two {
+        grid-area: two;
+        height: 100%;
+    }
+    .grid-inbox-three {
+        grid-area: three;
+        height: 80%;
+    }
+}

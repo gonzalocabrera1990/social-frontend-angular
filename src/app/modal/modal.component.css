@@ -1,0 +1,17 @@
+.space {
+  flex: 1 1 auto;
+}
+.formulario{
+height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.input-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.mat-toolbar {
+background-color: #21953c;
+}

@@ -1,0 +1,157 @@
+<div *ngIf="moodstate == 'start'" class="modalgroup">
+  <div *ngIf="moody.imageId" class="c">
+    <img class="resp" src="{{baseURL + moody.imageId.filename}}" alt="wall grid" />
+  </div>
+  <div *ngIf="moody.videoId" class="c cursor">
+    <div class="play-icon-content" [ngStyle]="{ 'display': playVideo ? 'none' : ''}">
+      <div class="play-icon">
+        <mat-icon  class="icon-display icon-play">play_arrow</mat-icon>
+      </div>
+    </div>
+    <video class="resp" src="{{baseURL + moody.videoId.filename}}"
+            (click)="play($event)"
+            (ended)="endVideo()"> </video>
+  </div>
+  <div class="modalComments">
+    <div class="comm">
+      <div *ngIf="commentsLoad">
+        <mat-spinner [diameter]="50"></mat-spinner>
+      </div>
+      <div *ngIf="!commentsLoad" >
+        <div class="comment-row" *ngFor="let com of comentarios">
+          <div class="d-flex" >
+          <div routerLink="/users/{{usuario}}/{{com.author.usuario}}" (click)="closeDialog()" class="cursor" >
+              <a>
+                  <img class="comment" src="{{baseURL + com.author.image.filename}}" alt="user/friend" />
+              </a>
+          </div>
+          <div>
+              <h6 class="col-7">{{com.comment}}</h6>
+          </div>
+        </div>
+        <mat-menu #menu="matMenu" xPosition="before" yPosition="above">
+          <button mat-menu-item (click)="deleteComment(com._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-menu>
+          <button *ngIf="storage == com.author._id" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="likecount" *ngIf="likes.length === 0">
+      <h6>Be the first to press Like</h6>
+    </div>
+    <div class="likecount" *ngIf="likes.length === 1">
+      <h6>It likes to <b class="cursor" (click)="openLoginForm()">{{likes.length}} person</b></h6>
+    </div>
+    <div class="likecount" *ngIf="likes.length > 1">
+      <h6>It likes to <b class="cursor" (click)="openLoginForm()">{{likes.length}} people</b></h6>
+    </div>
+    <div class="foot">
+      <form class="form-area h-100" novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="texto full-width">
+           <textarea matInput class="" formControlName="comment" placeholder="Your Comment" minlength="1" maxlength="140"></textarea>
+        </mat-form-field>
+
+        <div class="footButtons" >
+          <button *ngIf="moody.imageId" type="button" class="buton btn-sm h-50" mat-button (click)="handleLike(moody.imageId._id)">
+            <mat-icon class="icon-display" [ngStyle]="{ 'color': likestate ? 'red' : 'black'}">favorite</mat-icon>
+          </button>
+          <button *ngIf="moody.videoId" type="button" class="buton btn-sm h-50" mat-button (click)="handleLike(moody.videoId._id)">
+            <mat-icon class="icon-display" [ngStyle]="{ 'color': likestate ? 'red' : 'black'}">favorite</mat-icon>
+          </button>
+          <button type="submit" class="buton btn-sm h-50" mat-button [disabled]="commentForm.invalid">
+            <mat-icon class="icon-display">send</mat-icon>
+          </button>
+        </div>
+      </form>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="moodstate == 'user'" class="modalgroup">
+<div *ngIf="mediaType == 'imagen'" class="c-user">
+  <img class="resp" src="{{baseURL + moody.filename}}" alt="wall grid" />
+</div>
+  <div *ngIf="mediaType == 'video'" class="c-user">
+    <div class="play-icon-content" [ngStyle]="{ 'display': playVideo ? 'none' : ''}">
+      <div class="play-icon">
+        <mat-icon  class="icon-display icon-play">play_arrow</mat-icon>
+      </div>
+    </div>
+    <video class="resp cursor" src="{{baseURL + moody.filename}}"
+            (click)="play($event)"
+            (ended)="endVideo()"> </video>
+  </div>
+<div class="modalComments-user">
+  <div  class="comm">
+    <div *ngIf="commentsLoad">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+    <div *ngIf="!commentsLoad" >
+      <div class="comment-row" *ngFor="let com of comentarios">
+        <div class="d-flex" >
+        <div routerLink="/users/{{usuario}}/{{com.author.usuario}}" (click)="closeDialog()" class="cursor">
+            <a>
+                <img class="comment" src="{{baseURL + com.author.image.filename}}" alt="user/friend" />
+            </a>
+        </div>
+        <div>
+            <h6 class="col-7">{{com.comment}}</h6>
+        </div>
+      </div>
+      <mat-menu #menu="matMenu" xPosition="before" yPosition="above">
+        <button mat-menu-item (click)="deleteComment(com._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-menu>
+        <button *ngIf="storage == com.author._id" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="likecount" *ngIf="likes.length === 0">
+    <h6>Be the first to press Like</h6>
+  </div>
+  <div class="likecount" *ngIf="likes.length === 1">
+    <h6>It likes to <b class="cursor" (click)="openLoginForm()">{{likes.length}} person</b></h6>
+  </div>
+  <div class="likecount" *ngIf="likes.length > 1">
+    <h6>It likes to <b class="cursor" (click)="openLoginForm()">{{likes.length}} people</b></h6>
+  </div>
+  <div class="foot">
+    <form class="form-area h-100" novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmitUserComponent(moody._id)">
+      <mat-form-field class="texto full-width">
+        <textarea matInput class="" formControlName="comment" placeholder="Your Comment" minlength="1" maxlength="140"></textarea>
+      </mat-form-field>
+      <div class="footButtons" >
+        <button type="button" class="buton btn-sm h-50" mat-button (click)="handleLikeUserComponent(moody._id)">
+          <mat-icon class="icon-display" [ngStyle]="{ 'color': likestate ? 'red' : 'black'}">favorite</mat-icon>
+        </button>
+        <button type="submit" class="buton btn-sm h-50" mat-button [disabled]="commentForm.invalid">
+          <mat-icon class="icon-display" >send</mat-icon>
+        </button> 
+      </div>
+    </form>
+</div>
+</div>
+<div *ngIf="forth" name="forth" class="cursor arrow-right" (click)="backForthModal($event)" >
+  <mat-icon>arrow_forward_ios</mat-icon>
+</div>
+<div *ngIf="back" name="back" class="cursor arrow-left" (click)="backForthModal($event)" >
+  <mat-icon>arrow_back_ios</mat-icon>
+</div>
+</div>

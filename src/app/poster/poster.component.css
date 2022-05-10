@@ -1,0 +1,16 @@
+.poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: #b0eea0;
+    flex: 0 0 auto;
+    min-width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow: hidden;
+  }

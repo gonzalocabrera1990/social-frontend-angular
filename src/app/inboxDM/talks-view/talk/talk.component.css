@@ -1,0 +1,86 @@
+.chat{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: minmax(30%, 30%);
+    grid-auto-columns: minmax(30%, 30%);
+    align-items: center;
+}
+.inbox {
+    color: rgb(0, 0, 0);
+    height: 100%;
+    text-overflow: ellipsis;
+ }
+ .inboxes {
+     height: 100%;
+     display: block;
+     overflow-y: scroll;
+     scroll-behavior: smooth;
+     background: #b3b3b3;
+     max-height: 73vh;
+ }
+h6 {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    margin-left: 15%;
+}
+img {
+  margin: 15%;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  max-width: auto;
+  min-width: auto;
+  object-fit: cover;
+}
+.chats{
+  background-color: #59dc77;
+  color: black;
+  animation-name: gonzalo;
+  animation-duration: 2s;
+  animation-iteration-count: 5;
+  animation-timing-function: linear;
+  
+}
+@keyframes gonzalo {
+0%{
+    background-color: #59dc77;
+}
+50%{
+    background-color: #8ffaa8;
+}
+100%{
+    background-color: #59dc77;
+}
+}
+
+@media (max-width: 1000px) {
+  img{
+  width: 6vw;
+  height: 6vw;
+  }
+}
+@media (max-width: 767px) {
+  img{
+  width: 8vw;
+  height: 8vw;
+  }
+}
+@media (max-width: 520px) {
+  img{
+  width: 9vw;
+  height: 9vw;
+  margin: 5%;
+  }
+}
+@media (max-width: 343px) {
+  img{
+  width: 10vw;
+  height: 10vw;
+  margin: 5%;
+  }
+}

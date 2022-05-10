@@ -1,0 +1,72 @@
+<div class="container-fluid inbox">
+  <div class="row mb-3 user-row">
+    <div>Chat</div>
+    <div *ngIf="newTalkUser">
+      <div class="d-flex cursor" routerLink="/users/{{usuario}}/{{newTalkUser.id.usuario}}">
+        <div class="user-name">
+          <h6 class="d-flex">{{newTalkUser.id.firstname}} {{newTalkUser.id.lastname}}</h6>
+        </div>
+        <div class="ml-2">
+          <a>
+            <img class="user-img" src="{{baseURL + newTalkUser.id.image.filename}}" alt="user/friend" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row inboxes" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <div class="chat cursor">
+      <div *ngIf="!maintalk && !newTalkStatus">
+        <h1>Chat Status</h1>
+        <h4>Pick a Chat or a follower</h4>
+      </div>
+      <div *ngIf="!maintalk && newTalkStatus" class="message-display">
+        <div>
+          <h2>Start a new talk</h2>
+          <h4>Send a message</h4>
+        </div>
+        <div class="forma">
+          <form class="in-inbox h-100" novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+            <div class="chat-field">
+              <mat-form-field class="texto full-width chat-input">
+                <input type="text" matInput class="" formControlName="comment" placeholder="Your Comment" minlength="1"
+                  maxlength="140">
+              </mat-form-field>
+              <div class="footButtons">
+                <button type="submit" class="buton btn-sm h-50" mat-button [disabled]="commentForm.invalid">
+                  <mat-icon class="icon-display">send</mat-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="maintalk" class="message-display">
+        <div>
+          <div *ngFor="let message of maintalk.talk">
+            <div [ngClass]="storage == message.author ? 'my-margin' : 'your-margin' ">
+              <div [ngClass]="storage == message.author ? 'my-messages' : 'your-messages'" class="">
+                <h6>{{message.content}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="forma">
+          <form class="in-inbox h-100" novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+            <div class="chat-field">
+              <mat-form-field class="texto full-width chat-input">
+                <input type="text" matInput class="" formControlName="comment" placeholder="Your Comment" minlength="1"
+                  maxlength="140">
+              </mat-form-field>
+              <div class="footButtons">
+                <button type="submit" class="buton btn-sm h-50" mat-button [disabled]="commentForm.invalid">
+                  <mat-icon class="icon-display">send</mat-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

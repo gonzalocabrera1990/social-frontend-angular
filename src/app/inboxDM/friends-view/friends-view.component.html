@@ -1,0 +1,19 @@
+<div class="container-fluid inbox">
+  <div class="row mb-3 user-row">
+    <div>Follows</div>
+  </div>
+  <div class="row inboxes">
+    <div>
+      <div *ngFor="let folk of follows" class="chat cursor" (click)="selectTalk(folk.id._id)">
+        <div class="friends">
+          <img src="{{baseURL + folk.id.image.filename}}" alt="chatimgstatus" />
+        </div>
+
+        <div class="">
+          <h6>{{folk.id.firstname}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

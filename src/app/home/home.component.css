@@ -1,0 +1,20 @@
+.classic {
+    display: flex;
+    flex-direction: column;
+}
+.nocontentitem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
+.nocontentimage {
+    width: 100%;
+}
+.deform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }

@@ -1,0 +1,17 @@
+<mat-toolbar color="success">
+  Users Likes
+  <span class="space"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+    <div class="user-row" *ngFor="let user of likes">
+      <div class="d-flex cursor" routerLink="/users/{{usuario}}/{{user.usuario}}" mat-dialog-close (click)="closeDialogs()">
+        <div>
+          <a >
+              <img class="user-img" src="{{baseURL + user.image.filename}}" alt="user/friend" />
+          </a>
+        </div>
+        <div>
+            <h6 class="user-name col-6">{{user.firstname}} {{user.lastname}}</h6>
+        </div>
+      </div>
+    </div>

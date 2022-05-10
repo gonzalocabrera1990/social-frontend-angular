@@ -1,0 +1,242 @@
+.mat-toolbar{
+  height: 60px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+.logo-navbar{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  max-width: auto;
+  min-width: auto;
+  object-fit: cover;
+}
+.fill-remaining-space {
+ flex: 1 1 auto;
+}
+.responsive-nav{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(132, 230, 79);
+  position: fixed;
+  top: 60px;
+  z-index: 1000;
+}
+.background-primary {
+    background-color: rgb(4, 65, 4)
+}
+.space {
+     flex: 1 1 auto;
+}
+.searchInput {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+    height: 35px;
+    width: 225px;
+}
+.navbar-icons-group{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-window{
+  width: 375px;
+  height: 362px;
+  position: absolute;
+  background-color: rgb(132, 230, 79);
+  top: 47px;
+  left: 0;
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.searchs {
+  display: flex;
+  margin: 12px;
+  align-items: center;
+}
+.search-window div{
+  display: flex;
+}
+.search-imagen{
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
+  max-width: auto;
+  min-width: auto;
+}
+.search-imagen img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover
+}
+.before::before{
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  background-color: greenyellow;
+  top: 44px;
+  left: 1px;
+  z-index: 1000;
+  transform: rotateZ(45deg);
+}
+   /*NAVBAR STYLE*/
+.main-nav {
+  top:0;
+  position:fixed;
+  justify-content: space-around;
+  z-index: 100;
+}
+.navbar-nav {
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+@media (min-width: 768px){
+  .navbar-expand-md .navbar-collapse {
+      display: -ms-flexbox!important;
+      display: flex!important;
+      -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+      justify-content: space-between;
+  }
+}
+@media (max-width: 768px){
+  .navbar-nav{
+      display: -ms-flexbox!important;
+      display: flex!important;
+      -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+}
+.navbar-dark {
+  background-color: rgb(4,81,7);
+}
+.esparcir {
+  right: 0px;
+}
+.imagen-navbar-profile{
+  width: 30px;
+  height: 30px;
+  max-width: auto;
+  min-width: auto;
+}
+.imagen-navbar-profile img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.notifications {
+  background-color: rgb(91, 179, 94);
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  width: 375px;
+  height: 362px;
+  border: 1px solid black;
+  border-top: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  z-index: 10;
+}
+.notification{
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.notification-imagen{
+  width: 60px;
+  height: 60px;
+  max-width: auto;
+  min-width: auto;
+}
+.notification-imagen img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover
+}
+.notification-description{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.pik{
+  position: absolute;
+  transform: rotate(45deg);
+  background-color: rgb(91, 179, 94);
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  width: 15px;
+  height: 15px;
+}
+.pick-notification {
+  top: 53px;
+  right: 90px;
+}
+.mat-button {
+ min-width: 55px;
+}
+@media(max-width:392px){
+  .notifications {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+  }
+  .notification{
+    margin-left: 10%;
+  }
+  .mat-button{
+    min-width: 30px;
+  }
+}
+
+@media(max-width:599px){
+  .search-window {
+    top: 47px;
+    width: 100vw;
+    height: 100vh;
+    left: -55px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .searchs{
+    margin-left: 10%;
+  }
+  .before::before{
+    content: "";
+    width: 0;
+    height: 0;
+  }
+  .searchInput{
+    width: 90%;
+}
+}
+@media (max-width: 409px) {
+  .notification{
+      width: 100%;
+      right: 0;
+  }
+}

@@ -1,0 +1,93 @@
+<div *ngIf="!item">
+  <mat-spinner></mat-spinner>
+  <h4>Loading . . . Please Wait</h4>
+</div>
+<div *ngIf="item" class="col-12 col-md-8 col-lg-6 offset-md-2 p-1">
+  <div class="row backi">
+    <div class="imagenesWallHeadFrame">
+      <div class="frameOne cursor" routerLink="/users/{{usuario}}/{{item.userId.usuario}}">
+        <img class="imagenesWallHead" src="{{baseURL + item.userId.image.filename}}" alt="{{item._id}}" />
+        <div class=" col-6 ml-3 name">{{item.userId.firstname}} {{item.userId.lastname}}</div>
+      </div>
+      <div class="frameTwo">
+        <button *ngIf="item.imageId" class="corazon" (click)="handleLike(item.imageId._id)">
+          <mat-icon [ngStyle]="{ 'color': heart ? 'red' : 'black'}" class="icon-display">favorite</mat-icon>
+        </button>
+        <button *ngIf="item.videoId" class="corazon" (click)="handleLike(item.videoId._id)">
+          <mat-icon [ngStyle]="{ 'color': heart ? 'red' : 'black'}" class="icon-display">favorite</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="item.imageId" class="imagenesWallFrame">
+      <img class="imagenesWall" src="{{baseURL + item.imageId.filename}}" alt={{item._id}}
+        (dblclick)="handleLike(item.imageId._id)" />
+    </div>
+    <div *ngIf="item.videoId" class="imagenesWallFrame">
+      <div class="play-icon-content" [ngStyle]="{ 'display': playVideo ? 'none' : ''}">
+        <div class="play-icon">
+          <mat-icon class="icon-display icon-play">play_arrow</mat-icon>
+        </div>
+      </div>
+      <video class="imagenesWall cursor" src="{{baseURL + item.videoId.filename}}"
+        (dblclick)="handleLike(item.videoId._id)" (click)="play($event)" (ended)="endVideo()"></video>
+    </div>
+
+    <div *ngIf="commentLength > 1" class="commentsAndFormPlus">
+      <div class="commentsWallHeadFrame">
+        <div>
+          <div class="commentsContent">
+            <h6 class="comments">There are {{item.commento[0].length}} messages</h6>
+          </div>
+          <div class="commentsContent">
+            <a routerLink="/users/{{usuario}}/{{item.commento[0][item.commento[0].length - 2].author.usuario}}">
+              <h6 class="author">{{item.commento[0][item.commento[0].length - 2].author.usuario}}</h6>
+            </a>
+            <h6 class="comments">{{item.commento[0][item.commento[0].length - 2].comment}}</h6>
+          </div>
+          <div class="commentsContent">
+            <a routerLink="/users/{{usuario}}/{{item.commento[0][item.commento[0].length - 1].author.usuario}}">
+              <h6 class="author">{{item.commento[0][item.commento[0].length - 1].author.usuario}}</h6>
+            </a>
+            <h6 class="comments">{{item.commento[0][item.commento[0].length - 1].comment}}</h6>
+          </div>
+        </div>
+        <button type="submit" class="buttonComment" (click)="openDialog()">
+          <mat-icon class="icon-display">send</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="commentLength == 1" class="commentsAndForm">
+      <div class="commentsWallHeadFrame">
+        <div>
+          <div class="commentsContent">
+            <h6 class="comments">There is {{item.commento.length}} message</h6>
+          </div>
+          <div class="commentsContent">
+            <a routerLink="/users/{{usuario}}/{{item.commento[0].author.usuario}}">
+              <h6 class="author">{{item.commento[0].author.usuario}}</h6>
+            </a>
+            <h6 class="comments">{{item.commento[0].comment}}</h6>
+          </div>
+        </div>
+        <button type="submit" class="buttonComment" (click)="openDialog()">
+          <mat-icon class="icon-display">send</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!commentLength" class="commentsAndForm">
+      <div class="commentsWallHeadFrame">
+        <div>
+          <div class="commentsContent">
+            <h6 class="comments">No messages yet!!!</h6>
+          </div>
+        </div>
+        <button type="submit" class="buttonComment" (click)="openDialog()">
+          <mat-icon class="icon-display">send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

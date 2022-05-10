@@ -1,0 +1,23 @@
+<div class="contenedor">
+  <div class="wraper-login">
+    <div class="backgroundvideo"  >
+      <video class="imagenesWall" loop muted #video 
+      (canplay)="video.play()"
+      (loadedmetadata)="video.muted = true" >
+        <source src="/assets/images/angular_cover0.mp4"  />
+      </video>
+    </div>
+    <div class="data-form">
+      <div class="wraper-login wraper-form">
+        <div class="wraper-text">
+          <h1>LANDSCAPE</h1>
+          <h4>RED SOCIAL</h4>
+        </div>
+        <div class="wraper-text">
+          <input type="button" value="Login" (click)="openLoginForm()">
+          <input type="button" value="Sign up" routerLink="/signup">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

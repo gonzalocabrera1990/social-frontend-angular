@@ -1,0 +1,181 @@
+
+/*STARTCOMPONENT*/
+/*ASIDE FOLLOWERS*/
+button {
+    outline: none;
+}
+.backi {
+    background-color: aliceblue;
+    min-height: 500px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border-radius: 2%;
+    margin: 0 0 80px 0;
+}
+@media (max-width: 599px) {
+    .col-12 {
+        padding: 0;
+    }
+}
+/*head*/
+.imagenesWallHeadFrame {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 0px 5px 0px 8px;
+}
+.imagenesWallHead {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.name {
+    display: flex;
+}
+.frameOne {
+    display: flex;
+    align-items: center;
+    color: black;
+    width: inherit;
+}
+.corazon{
+    border-style: hidden;
+    background-color: transparent;
+}
+/*image*/
+.imagenesWallFrame {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+    min-width: auto;
+    border: 0px white;
+}
+.imagenesWall {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border: 0px white;
+}
+.nocontentitem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
+.nocontentimage {
+    width: 100%;
+}
+.play-icon-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.play-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+.icon-play{
+    width: 15vw;
+    height: 15vw;
+    font-size: 14vw;
+    color: white;
+}
+/*comment and form*/
+.commentsAndForm{
+    width: 100%;
+    background-color: aliceblue;
+    padding: 3px 15px;
+    border-bottom: 2%;
+}
+.commentsAndFormPlus{
+    width: 100%;
+    background-color: aliceblue;
+    padding: 3px 15px;
+    border-bottom: 2%;
+    height: 80px;
+}
+.commentsWallHeadFrame{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.commentsContent {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+}
+.author{
+    font-size: 14px;
+    margin-right: 10px;
+    color: black;
+}
+.comments{
+    color: rgb(136, 135, 135);
+    font-size: 12px;
+}
+/*form*/
+.inputsWallFrame {
+    display: flex;
+    height: 60px;
+    margin: 0px 0px;
+}
+.inputsWall {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color:aliceblue;
+    height: 100%;
+    width:100%;
+}
+.buttonComment {
+    right: 5px;
+    bottom: 15px;
+    background-color:aliceblue;
+    color: green;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+}
+.sidenav {
+    position: fixed;
+    z-index: 1;
+    font-size: 14px;
+    top: 160px;
+    right: 20px;
+    overflow-x: hidden;
+    padding-top: 20px;
+    height: 60vh;
+}
+.scroll-aside {
+    height: 50vh;
+    display: block;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background: #D1C4E9;
+    max-height: 60vh;
+}
+/*MODAL*/
+.center-comments {
+    align-self: center;
+}
+
+@media (max-width: 991px) {
+    .esconder {
+        display:none;
+    }
+}

@@ -1,0 +1,38 @@
+<mat-toolbar color="#28a745">
+  Login
+  <span class="space"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()" class="formulario">
+<div>
+  <mat-dialog-content class="input-flex">
+      <mat-form-field>
+        <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username"
+          #username="ngModel" required>
+        <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password"
+          #password="ngModel" required>
+        <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
+  </mat-dialog-content>
+</div>
+  <div *ngIf="loadingLogin || errMess">
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-primary text-floral-white"
+      [disabled]="loginForm.form.invalid">Login</button>
+  </mat-dialog-actions>
+</div>
+<div [hidden]="loadingLogin || errMess">
+  <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+</form>
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>

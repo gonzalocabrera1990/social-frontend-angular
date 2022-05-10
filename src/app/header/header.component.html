@@ -1,0 +1,111 @@
+<mat-toolbar *ngIf="visibled" class="background-primary">
+  <div class="" routerLink="/home" (click)="hidenav()">
+    <img src="/assets/images/a.png" height=30 width=41 class="logo-navbar cursor" alt="Red Social">
+  </div>
+  <div class="searchInput">
+    <input type="text" class="searchInput" [(ngModel)]="searchTerm" (ngModelChange)="searching($event)" />
+    <div *ngIf="searchResults" class="before">
+      <div class="search-window">
+        <div *ngFor="let user of searchResults" class="searchs cursor">
+          <div routerLink="/users/{{usuario}}/{{user.usuario}}" (click)="clean()">
+            <div class="search-imagen">
+              <img src="{{baseURL + user.image.filename}}" alt="profile">
+            </div>
+            <h6>{{user.firstname}} {{user.lastname}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-xs>
+    <div *ngIf="user" routerLink="/userpage" class="imagen-navbar-profile cursor">
+      <img src="{{baseURL + user.image.filename}}" alt="profile">
+    </div>
+    <div>
+      <a mat-button routerLink="/home"><span class="fa fa-home fa-md"></span></a>
+      <a mat-button routerLink="/settings"><span class="fa fa-cog fa-md"></span></a>
+      <a mat-button routerLink="/inbox" [ngStyle]="{ 'color': inboxStatus ? colorful : 'inherit'}" (click)="read()" ><span
+          class="fa fa-envelope fa-md"></span></a>
+      <a mat-button (click)="show()" [ngStyle]="{ 'color': notificationStatus ? 'red' : 'inherit'}"><span
+          class="fa fa-bell fa-md"></span></a>
+      <div class="notifications" [ngStyle]="{ 'display': notificationStyle ? '' : 'none'}">
+        <div *ngFor="let noti of notifications" class="notification">
+          <div class="notification-imagen">
+            <img src="{{baseURL + noti.followingId.image.filename}}" alt="profile">
+          </div>
+          <div class="notification-description">
+            <div>
+              <h6>{{noti.followingId.firstname}} {{noti.followingId.lastname}}</h6>
+            </div>
+            <div>
+              <button mat-stroked-button (click)="notify(true, noti.followingId._id, noti._id)">
+                <mat-icon style="color: green;">thumb_up_alt</mat-icon>
+              </button>
+              <button mat-stroked-button (click)="notify(false, noti.followingId._id, noti._id)">
+                <mat-icon style="color: red;">thumb_down_alt</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <span>Logout</span>
+          <mat-icon>logout</mat-icon>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <button mat-button (click)="shownav()" fxHide="false" fxHide.gt-xs>
+    <mat-icon>menu</mat-icon>
+  </button>
+
+</mat-toolbar>
+<div [ngStyle]="{ 'display': navbarStyle ? '' : 'none'}">
+  <div class="responsive-nav">
+    <div *ngIf="user" routerLink="/userpage" class="imagen-navbar-profile cursor" (click)="shownav()">
+      <img src="{{baseURL + user.image.filename}}" alt="profile">
+    </div>
+    <a mat-button routerLink="/home" (click)="shownav()"><span class="fa fa-home fa-md"></span></a>
+    <a mat-button routerLink="/settings" (click)="shownav()"><span class="fa fa-cog fa-md"></span></a>
+    <a mat-button routerLink="/inbox" [ngStyle]="{ 'color': inboxStatus ? colorful : 'inherit'}" (click)="read()" ><span
+        class="fa fa-envelope fa-md"></span></a>
+    <a mat-button (click)="show()" [ngStyle]="{ 'color': notificationStatus ? 'red' : 'inherit'}"><span
+        class="fa fa-bell fa-md"></span></a>
+    <div class="notifications" [ngStyle]="{ 'display': notificationStyle ? '' : 'none'}">
+      <div *ngFor="let noti of notifications" class="notification">
+        <div class="notification-imagen">
+          <img src="{{baseURL + noti.followingId.image.filename}}" alt="profile">
+        </div>
+        <div class="notification-description">
+          <div>
+            <h6>{{noti.followingId.firstname}} {{noti.followingId.lastname}}</h6>
+          </div>
+          <div>
+            <button mat-stroked-button (click)="notify(true, noti.followingId._id, noti._id)">
+              <mat-icon style="color: green;">thumb_up_alt</mat-icon>
+            </button>
+            <button mat-stroked-button (click)="notify(false, noti.followingId._id, noti._id)">
+              <mat-icon style="color: red;">thumb_down_alt</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <span>Logout</span>
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-menu>
+  </div>
+</div>

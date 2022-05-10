@@ -1,0 +1,41 @@
+<div (click)="upload.click()" class="modal-image-content">
+    <div class="profile-image">
+        <div class="image-profile-content">
+            <div class="hovertextfather cursor">
+                <h6 class="hovertext">Click For Change Your Photo</h6>
+            </div>
+            <div *ngIf="imageShowen == null" class="image-content">
+                <img src="{{baseURL + profileImage.filename}}" alt="Profile One" class="img-thumbnail profile" />
+            </div>
+            <div *ngIf="imageShowen" class="image-content">
+                <img [src]="imageShowen" alt="file One" class="img-thumbnail profile" />
+            </div>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="file" class="submit-button">
+    <div *ngIf="!loadingProfileImage else sendProfileImage">
+        <form (submit)="onUpload()" encType="multipart/form-data">
+            <div class="example-button-container">
+                <button class="publish" type="submit" mat-mini-fab aria-label="Example icon button with a menu icon">
+                    <mat-icon>publish</mat-icon>
+                </button>
+                <button class="cancel" type="button" (click)="cleanInput()" mat-mini-fab
+                    aria-label="Example icon button with a menu icon">
+                    <mat-icon>no_photography</mat-icon>
+                </button>
+                <button class="again" type="button" (click)="upload.click()" mat-mini-fab
+                    aria-label="Example icon button with a menu icon">
+                    <mat-icon>replay_circle_filled</mat-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+    <ng-template #sendProfileImage >
+        <div class="example-button-container">
+            <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
+    </ng-template>
+</div>
+<input type="file" id="image" name="image" #upload hidden (change)="onChangeImageUpload($event)" />

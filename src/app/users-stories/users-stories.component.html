@@ -1,0 +1,81 @@
+<div class="modal-story">
+  <div *ngIf="source" class="stories-row">
+    <div class="modal-story-image">
+
+      <div class="set">
+        <div *ngFor="let item of currentDisplayStory; let i = index" class="set-items"> 
+              <div *ngIf="i == nextIndex" class="set-item-seing">
+                <div class='time-fill' [style.animation-duration]="indexTime"></div>
+              </div>
+              <div  *ngIf="i > nextIndex" class="set-item-noseen">
+
+              </div>
+              <div  *ngIf="nextIndex > i" class="set-item-seen">
+
+              </div>
+        </div>
+
+      </div>
+      <div [hidden]="source || errMess">
+        <mat-spinner></mat-spinner>
+      </div>
+      <div *ngIf="currentMediaDisplay == 'imagen'" >
+        <img class="responsive" src="{{baseURL + source}}" (load)="loadImage()" />
+      </div>
+      <div *ngIf="currentMediaDisplay == 'video'" >
+        <video class="responsive" src="{{baseURL + source}}" autoPlay (ended)="videoEnd()">
+        </video>
+      </div>
+
+
+      <div class='arrow-cointainer-left' (click)="back();">
+        <div class="cursor arrow-story-cointainer-left">
+          <span class="fa fa-angle-left left-arrow-story"></span>
+        </div>
+      </div>
+      <div class='arrow-cointainer-right' (click)="forth();">
+        <div class="cursor arrow-story-cointainer-right">
+          <span class="fa fa-angle-right right-arrow-story"></span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="allDisplayStory[indexDisplayStory - 1]" class="story-item item-prev-1 "
+      [ngStyle]="getStylesLeft(screenWidth, 'first')">
+      <div class='stories-item-img'>
+        <img src="{{baseURL + allDisplayStory[indexDisplayStory - 1][0].userData.image.filename}}"
+          alt="chatimgstatus" />
+        <h3>{{allDisplayStory[indexDisplayStory - 1][0].userData.firstname}}</h3>
+        <h3>{{allDisplayStory[indexDisplayStory - 1][0].userData.lastname}}</h3>
+      </div>
+    </div>
+    <div *ngIf="allDisplayStory[indexDisplayStory - 2]" class="story-item item-prev-2"
+      [ngStyle]="getStylesLeft(screenWidth, 'second')">
+      <div class='stories-item-img'>
+        <img src="{{baseURL + allDisplayStory[indexDisplayStory - 2][0].userData.image.filename}}"
+          alt="chatimgstatus" />
+        <h3>{{allDisplayStory[indexDisplayStory - 2][0].userData.firstname}}</h3>
+        <h3>{{allDisplayStory[indexDisplayStory - 2][0].userData.lastname}}</h3>
+      </div>
+    </div>
+    <div *ngIf="allDisplayStory[indexDisplayStory + 2]" class="story-item item-next-2"
+      [ngStyle]="getStylesRight(screenWidth, 'second')">
+      <div class='stories-item-img'>
+        <img src="{{baseURL + allDisplayStory[indexDisplayStory + 2][0].userData.image.filename}}"
+          alt="chatimgstatus" />
+        <h3>{{allDisplayStory[indexDisplayStory + 2][0].userData.firstname}}</h3>
+        <h3>{{allDisplayStory[indexDisplayStory + 2][0].userData.lastname}}</h3>
+      </div>
+    </div>
+    <div *ngIf="allDisplayStory[indexDisplayStory + 1]" class="story-item item-next-1"
+      [ngStyle]="getStylesRight(screenWidth, 'first')">
+      <div class='stories-item-img'>
+        <img src="{{baseURL + allDisplayStory[indexDisplayStory + 1][0].userData.image.filename}}"
+          alt="chatimgstatus" />
+        <h3>{{allDisplayStory[indexDisplayStory + 1][0].userData.firstname}}</h3>
+        <h3>{{allDisplayStory[indexDisplayStory + 1][0].userData.lastname}}</h3>
+      </div>
+    </div>
+
+  </div>
+</div>

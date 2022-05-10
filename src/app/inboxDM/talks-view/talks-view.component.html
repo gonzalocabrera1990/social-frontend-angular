@@ -1,0 +1,10 @@
+<div class="container-fluid inbox">
+  <div class="row mb-3 user-row">
+      <div>Chats</div>
+  </div>
+  <div class="row inboxes">
+    <div *ngFor="let talk of talks">
+      <app-talk [talk]="talk" (talkEvent)="loadTalk($event)"></app-talk>
+    </div>
+  </div>
+</div>

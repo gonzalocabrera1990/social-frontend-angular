@@ -1,0 +1,104 @@
+<div class="contenedor">
+  <div [hidden]="loading || errMess">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="modalgroup">
+    <div *ngIf="mediaType == 'imagen'" class="c">
+      <div class="access-buttons-media">
+        <div class="back-grid" (click)="goBack()">
+          <span class="fa fa-angle-left cursor"></span>
+        </div>
+        <mat-menu #picture="matMenu" xPosition="before" yPosition="above">
+          <button mat-menu-item (click)="deletePhotograph()">
+            SURE?
+          </button>
+        </mat-menu>
+        <button *ngIf="deleteImageStatus" class="trashIcon" mat-icon-button [matMenuTriggerFor]="picture"
+          aria-label="Example icon-button with a menu">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <img src="{{baseURL + data.filename}}" alt="mapeo._id" class="resp" />
+    </div>
+    <div *ngIf="mediaType == 'video'" class="c">
+      <div class="play-icon-content" [ngStyle]="{ 'display': playVideo ? 'none' : ''}">
+        <div class="play-icon">
+          <mat-icon class="icon-display icon-play">play_arrow</mat-icon>
+        </div>
+      </div>
+      <div class="access-buttons-media">
+        <div class="back-grid" (click)="goBack()">
+          <span class="fa fa-angle-left cursor"></span>
+        </div>
+
+        <mat-menu #picture="matMenu" xPosition="before" yPosition="above">
+          <button mat-menu-item (click)="deletePhotograph()">
+            SURE?
+          </button>
+        </mat-menu>
+        <button *ngIf="deleteImageStatus" class="trashIcon" mat-icon-button [matMenuTriggerFor]="picture"
+          aria-label="Example icon-button with a menu">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+      <video src="{{baseURL + data.filename}}" alt="mapeo._id" class="resp" (click)="play($event)"
+        (ended)="endVideo()"></video>
+    </div>
+    <div class="modalComments">
+      <div class="comm">
+        <div *ngIf="!comments">
+          <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="comments">
+          <div class="comment-row" *ngFor="let com of comments">
+            <div class="comment-content">
+              <div>
+                <a>
+                  <img class="comment" src="{{baseURL + com.author.image.filename}}" alt="user/friend" />
+                </a>
+              </div>
+              <div>
+                <h6 class="col-7">{{com.comment}}</h6>
+              </div>
+            </div>
+            <mat-menu #menu="matMenu" xPosition="before" yPosition="above">
+              <button mat-menu-item (click)="deleteComment(com._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-menu>
+            <button *ngIf="com.author._id == storage" mat-icon-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="likecount" *ngIf="likes.length === 0">
+        <h6>Be the first to press Like</h6>
+      </div>
+      <div class="likecount" *ngIf="likes.length === 1">
+        <h6>It likes to <b class="cursor" (click)="openLoginForm()">{{likes.length}} person</b></h6>
+      </div>
+      <div class="likecount" *ngIf="likes.length > 1">
+        <h6>It likes to <b class="cursor" (click)="openLoginForm()">{{likes.length}} people</b></h6>
+      </div>
+      <div class="foot">
+        <form class="form-area h-100" novalidate [formGroup]="commentForm" #cform="ngForm"
+          (ngSubmit)="onSubmitUserComponent()">
+          <mat-form-field class="texto full-width">
+            <textarea matInput class="textarea" formControlName="comment" placeholder="Your Comment" minlength="1"
+              maxlength="140"></textarea>
+          </mat-form-field>
+          <div class="footButtons">
+            <button type="button" class="buton btn-sm h-50" mat-button (click)="handleLikeUserComponent()">
+              <mat-icon [ngStyle]="{ 'color': likeStatus ? 'red' : 'black'}" class="icon-display">favorite</mat-icon>
+            </button>
+            <button type="submit" class="buton btn-sm h-50" mat-button [disabled]="commentForm.invalid">
+              <mat-icon class="icon-display">send</mat-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

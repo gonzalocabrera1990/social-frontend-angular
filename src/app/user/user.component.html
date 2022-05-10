@@ -1,0 +1,88 @@
+<div *ngIf="user[0]; else userloading" style="margin-top: 5vh;">
+  <div *ngFor="let profile of user">
+    <div class="profile-image">
+      <div class="image-profile-content cursor">
+        <img src="{{baseURL + profile.image.filename}}" alt="Profile One" class="img-thumbnail profile"
+          (click)="openProfileModal()" />
+      </div>
+    </div>
+
+    <div class="user-info">
+      <div class="user-info-description">
+        <h5 class="">{{profile.firstname}} {{profile.lastname}}</h5>
+        <h5 class="">"{{profile.phrase}}"</h5>
+        <h5 class="">{{profile.followers.length}} Followers - {{profile.following.length}} Followings</h5>
+      </div>
+    </div>
+    <div *ngIf="!loadWall" class="user-media-post">
+      <div class="user-media-post-item">
+        <button class="fa fa-image fa-md" (click)="imagewall.click()">
+          <input type="file" id="imagen" name="image" #imagewall hidden (change)="setFileInfo($event)" />
+        </button>
+      </div>
+      <div class="user-media-post-item">
+        <button class="fa fa-film fa-md" (click)="videowall.click()">
+          <input type="file" id="video" name="image" #videowall hidden (change)="setFileInfo($event)" />
+        </button>
+      </div>
+      <div class="user-media-post-item">
+        <button class="fa fa-circle fa-md" style="color: #df0618;" (click)="story.click()">
+          <input type="file" id="story" name="image" #story hidden (change)="setFileInfo($event)" />
+        </button>
+      </div>
+    </div>
+    <div *ngIf="loadWall" class="user-media-post">
+      <div *ngIf="!loadingFile; else sendFile">
+        <form (submit)="handleWallSubmit()" encType="multipart/form-data">
+          <div class="user-media-post-item">
+            <button class="fa fa-arrow-circle-up fa-md" type="submit"></button>
+          </div>
+        </form>
+      </div>
+      <ng-template #sendFile>
+        <div>
+          <mat-spinner [diameter]="50" ></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <div>
+    <mat-tab-group animationDuration="0ms" mat-align-tabs="start" class="labels-align ">
+      <mat-tab label="Images">
+        <div *ngIf="screenWidth > 600" class="grids">
+          <div *ngFor="let img of user[0].imagesWall" class="image-content cursor">
+            <img src="{{baseURL + img.filename}}" alt="chatimgstatus" (click)="openDialog(img, 'imagen')"
+              class="img-thumbnail img-grid" />
+          </div>
+        </div>
+        <div *ngIf="screenWidth < 601" class="grids">
+          <div *ngFor="let img of user[0].imagesWall" class="image-content cursor">
+            <img src="{{baseURL + img.filename}}" alt="chatimgstatus" routerLink="/view/imagenwall/{{img._id}}"
+              class="img-thumbnail img-grid" />
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Videos">
+        <div *ngIf="screenWidth > 600" class="grids">
+          <div *ngFor="let vid of user[0].videosWall" class="image-content cursor">
+            <video src="{{baseURL + vid.filename}}" alt="chatimgstatus" (click)="openDialog(vid,'video')"
+              class="img-thumbnail img-grid"></video>
+          </div>
+        </div>
+        <div *ngIf="screenWidth < 601" class="grids">
+          <div *ngFor="let vid of user[0].videosWall" class="image-content cursor">
+            <video src="{{baseURL + vid.filename}}" alt="chatimgstatus" routerLink="/view/imagenwall/{{vid._id}}"
+              class="img-thumbnail img-grid"></video>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+<ng-template #userloading>
+  <div>
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

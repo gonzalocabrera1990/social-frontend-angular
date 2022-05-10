@@ -1,0 +1,58 @@
+<mat-toolbar class="background-primary">
+  <div class="" routerLink="/login">
+    <img src="/assets/images/a.png" height=30 width=41 class="logo-navbar cursor" alt="Red Social">
+  </div>
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+  <div>
+    <a mat-button routerLink="/login"><span class="fa fa-home fa-md"></span></a>
+  </div>
+</mat-toolbar>
+
+<div *ngFor="let profile of user" style="margin-top: 5vh;">
+  <div class="profile-image">
+    <div class="image-profile-content cursor">
+      <img src="{{baseURL + profile.image.filename}}" alt="Profile One" class="img-thumbnail profile"
+        routerLink="/login" />
+    </div>
+  </div>
+  <div class="">
+    <button type="button" class="btn-success col-2 offset-5 mt-3" routerLink="/login">
+      <mat-icon class="icon-display">person_add</mat-icon>
+    </button>
+  </div>
+
+  <div class="user-info">
+    <div classclassName="user-info-description">
+      <h5 class="">{{profile.firstname}} {{profile.lastname}}</h5>
+      <h5 class="">"{{profile.phrase}}"</h5>
+      <h5 class="">{{profile.followers.length}} Followers - {{profile.following.length}} Following</h5>
+    </div>
+  </div>
+
+  <div *ngIf="!profile.message; else message">
+    <mat-tab-group animationDuration="0ms" mat-align-tabs="start" class="labels-align">
+      <mat-tab label="Images">
+        <div class="grids">
+          <div *ngFor="let img of profile.imagesWall" class="image-content cursor">
+            <img src="{{baseURL + img.filename}}" class="img-thumbnail img-grid" alt="chatimgstatus"
+              routerLink="/login" />
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Videos">
+        <div class="grids">
+          <div *ngFor="let vid of profile.videosWall" class="image-content cursor">
+            <video src="{{baseURL + vid.filename}}" class="img-thumbnail img-grid" alt="chatimgstatus"
+              routerLink="/login"></video>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <ng-template #message>
+    <h3>{{profile.message}}</h3>
+  </ng-template>
+
+</div>

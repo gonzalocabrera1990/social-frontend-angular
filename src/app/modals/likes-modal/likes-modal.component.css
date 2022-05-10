@@ -1,0 +1,19 @@
+.user-row{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+img.user-img{
+  margin-left: 5%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  max-width: auto;
+  min-width: auto;
+  object-fit: cover;
+}
+.user-name {
+  display: inline;
+}

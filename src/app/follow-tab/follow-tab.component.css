@@ -1,0 +1,86 @@
+.sidenav {
+  position: fixed;
+  z-index: 1;
+  font-size: 14px;
+  top: 160px;
+  right: 20px;
+  overflow-x: hidden;
+  padding-top: 20px;
+  height: 60vh;
+}
+.grida {
+display: grid;
+grid-gap: 10px;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr;
+grid-auto-rows: minmax(30%, 30%);
+grid-auto-columns: minmax(30%, 30%);
+align-items: center;
+border-radius: 20%;
+overflow-x: hidden;
+}
+::ng-deep .aaa .mat-tab-body-content{
+overflow-y: auto;
+}
+::ng-deep .aaa .mat-tab-body.mat-tab-body-active {
+max-height: 39vh;
+}
+h6 {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  align-items: center;
+  margin-left: 30px;
+}
+img{
+margin-top: 10px;
+margin-left: 10px;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+max-width: auto;
+min-width: auto;
+object-fit: cover;
+}
+
+@media (max-width: 1000px) {
+img{
+width: 40px;
+height: 40px;
+border-radius: 50%;
+max-width: auto;
+min-width: auto;
+object-fit: cover;
+}
+}
+@media (max-width: 767px) {
+img{
+width: 25px;
+height: 25px;
+border-radius: 50%;
+max-width: auto;
+min-width: auto;
+object-fit: cover;
+}
+}
+@media (max-width: 520px) {
+img{
+width: 20px;
+height: 20px;
+border-radius: 50%;
+max-width: auto;
+min-width: auto;
+object-fit: cover;
+}
+}
+@media (max-width: 343px) {
+img{
+width: 10px;
+height: 10px;
+border-radius: 50%;
+max-width: auto;
+min-width: auto;
+object-fit: cover;
+}
+}

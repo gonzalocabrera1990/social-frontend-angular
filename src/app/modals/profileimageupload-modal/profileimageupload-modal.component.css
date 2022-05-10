@@ -1,0 +1,62 @@
+.modal-image-content {
+    background-color: grey;
+    height: 100%;
+    width: 100%;
+}
+.profile-image{
+    display: flex;
+    position: relative;
+    height: 100%;
+    justify-content: center;
+}
+.image-content {
+    height: 100%;
+}
+img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hovertextfather {
+    display: none;
+    color: black;
+}
+.hovertext {
+   color: black;
+}
+
+.profile-image:hover .hovertextfather{
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.6;
+    background-color: rgb(187, 175, 175);
+}
+.example-button-container {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.publish {
+    background-color: rgb(55, 194, 55);
+}
+.cancel {
+    background-color: red;
+}
+.again {
+    background-color: rgb(204, 42, 204);
+}
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #24ff24;
+}

@@ -1,0 +1,50 @@
+<div *ngIf="loading" class="deform">
+  <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+<div *ngIf="signupResponse" class="deform">
+  <h3>{{signupResponse}}</h3>
+  <h3>Return and Login</h3>
+  <button class="buton btn-sm h-50" mat-button routerLink="/login">
+    <mat-icon class="icon-display">done</mat-icon>
+  </button>
+</div>
+<div *ngIf="!loading && !signupResponse" class="form-container">
+  <div class="access-buttons-media">
+    <div class="back-grid" (click)="goBack()" >
+      <span class="fa fa-angle-left cursor"></span>
+    </div>
+  </div>
+<form novalidate [formGroup]="signupForm" #cform="ngForm"  class="deform" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="email" type="email" email required>
+    <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" matInput formControlName="password" placeholder="password">
+    <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" matInput formControlName="confirmpassword" placeholder="confirmpassword">
+    <mat-error *ngIf="formErrors.confirmpassword">{{formErrors.confirmpassword}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select matInput formControlName="gender" placeholder="gender">
+      <mat-option value="Female">Female</mat-option>
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Non binary">Non binary</mat-option>
+    <mat-error *ngIf="formErrors.gender">{{formErrors.gender}}</mat-error>
+  </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="date" formControlName="date" matInput placeholder="date">
+    <mat-error *ngIf="formErrors.date">{{formErrors.date}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select matInput formControlName="country" placeholder="country">
+    <mat-option *ngFor="let topping of countries" [value]="topping">{{topping}}</mat-option>
+    <mat-error *ngIf="formErrors.country">{{formErrors.country}}</mat-error>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="success" [disabled]="signupForm.invalid">Send</button>
+</form>
+</div>
